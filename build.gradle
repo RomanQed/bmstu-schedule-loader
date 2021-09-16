@@ -1,0 +1,112 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    compileJava.options.encoding('UTF-8')
+    withJavadocJar()
+    withSourcesJar()
+}
+
+group = 'com.github.romanqed'
+archivesBaseName = 'bmstu-schedule-loader'
+version = System.getenv('RELEASE_VERSION') ?: "1.0.0"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.14.2'
+    implementation group: 'com.konghq', name: 'unirest-java', version: '3.11.09'
+    implementation group: 'net.sf.biweekly', name: 'biweekly', version: '0.6.6'
+}
+
+jar {
+    from sourceSets.main.output
+    from sourceSets.main.allJava
+}
+
+signing {
+    sign publishing.publications
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            customizePom(pom)
+            groupId group
+            artifactId archivesBaseName
+            version version
+
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username System.getenv('SONATYPE_USERNAME')
+                password System.getenv('SONATYPE_PASSWORD')
+            }
+        }
+    }
+}
+
+String wholeName = 'bmstu-schedule-loader'
+String description = 'A simple library for downloading and parsing the schedule of the selected department and group.'
+String issueManager = 'GitHub'
+String devName = 'RomanQed'
+String devMail = 'gbakaldin@gmail.com'
+String gitUrl = 'https://github.com/' + devName + '/'
+String licenseName = 'MIT License'
+String licenseUrl = 'https://github.com/RomanQed/DiscordMessageParser/blob/main/LICENSE'
+
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test"
+        }
+
+        root.children().last() + {
+            resolveStrategy = DELEGATE_FIRST
+
+            description = description
+            name = wholeName
+            url = gitUrl + wholeName
+            organization {
+                name = group
+                url = gitUrl + wholeName
+            }
+            issueManagement {
+                system = issueManager
+                url = gitUrl + wholeName + '/issues'
+            }
+            licenses {
+                license {
+                    name = licenseName
+                    url = licenseUrl
+                }
+            }
+            scm {
+                url = gitUrl + wholeName
+                connection = 'scm:' + gitUrl + wholeName + '.git'
+                developerConnection = 'scm:' + gitUrl + wholeName + '.git'
+            }
+            developers {
+                developer {
+                    id 'dev'
+                    name = devName
+                    email = devMail
+                }
+            }
+        }
+    }
+}
+

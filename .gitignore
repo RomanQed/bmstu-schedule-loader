@@ -1,5 +1,16 @@
+# Gradle files
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+secring.gpg
+
+# IDE files
+.idea/
+
 # Compiled class file
 *.class
+build/
 
 # Log file
 *.log
