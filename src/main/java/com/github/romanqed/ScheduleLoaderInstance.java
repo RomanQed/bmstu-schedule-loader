@@ -43,7 +43,7 @@ public class ScheduleLoaderInstance {
     public Task<ICalendar> loadSchedule(String uri) {
         try {
             return loader.asyncLoad(
-                    new URL(BMSTU_URL + uri),
+                    new URL(BMSTU_URL + uri + ".ics"),
                     (rawCalendar) -> Biweekly.parse(rawCalendar).first()
             );
         } catch (Exception e) {
