@@ -57,15 +57,6 @@ publishing {
     }
 }
 
-String wholeName = 'bmstu-schedule-loader'
-String description = 'A simple library for downloading and parsing the schedule of the selected department and group.'
-String issueManager = 'GitHub'
-String devName = 'RomanQed'
-String devMail = 'gbakaldin@gmail.com'
-String gitUrl = 'https://github.com/' + devName + '/'
-String licenseName = 'MIT License'
-String licenseUrl = 'https://github.com/RomanQed/DiscordMessageParser/blob/main/LICENSE'
-
 def customizePom(pom) {
     pom.withXml {
         def root = asNode()
@@ -76,34 +67,33 @@ def customizePom(pom) {
 
         root.children().last() + {
             resolveStrategy = DELEGATE_FIRST
-
-            description = description
-            name = wholeName
-            url = gitUrl + wholeName
+            description = 'A simple library for downloading and parsing the schedule of the selected department and group.'
+            name = 'bmstu-schedule-loader'
+            url = 'https://github.com/RomanQed/bmstu-schedule-loader'
             organization {
-                name = group
-                url = gitUrl + wholeName
+                name = 'com.github.romanqed'
+                url = 'https://github.com/RomanQed/'
             }
             issueManagement {
-                system = issueManager
-                url = gitUrl + wholeName + '/issues'
+                system = 'GitHub'
+                url = 'https://github.com/RomanQed/bmstu-schedule-loader/issues'
             }
             licenses {
                 license {
-                    name = licenseName
-                    url = licenseUrl
+                    name = 'MIT License'
+                    url = 'https://github.com/RomanQed/bmstu-schedule-loader/blob/main/LICENSE'
                 }
             }
             scm {
-                url = gitUrl + wholeName
-                connection = 'scm:' + gitUrl + wholeName + '.git'
-                developerConnection = 'scm:' + gitUrl + wholeName + '.git'
+                url = 'https://github.com/RomanQed/bmstu-schedule-loader'
+                connection = 'scm:https://github.com/RomanQed/bmstu-schedule-loader.git'
+                developerConnection = 'scm:https://github.com/RomanQed/bmstu-schedule-loader.git'
             }
             developers {
                 developer {
                     id 'dev'
-                    name = devName
-                    email = devMail
+                    name = 'RomanQed'
+                    email = 'gbakaldin@gmail.com'
                 }
             }
         }
