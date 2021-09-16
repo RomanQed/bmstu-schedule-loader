@@ -2,30 +2,29 @@ package com.github.romanqed;
 
 import biweekly.Biweekly;
 import biweekly.ICalendar;
-import com.github.romanqed.concurrent.BaseTaskFabric;
 import com.github.romanqed.concurrent.Task;
 import com.github.romanqed.concurrent.TaskFabric;
 import com.github.romanqed.network.AsyncLoader;
 import com.github.romanqed.util.Parse;
-import kong.unirest.Unirest;
-import kong.unirest.UnirestInstance;
+import okhttp3.OkHttpClient;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.net.URL;
 import java.util.Map;
-import java.util.concurrent.Executors;
 import java.util.function.Function;
 
 public class ScheduleLoaderInstance {
     public final static String SCHEDULES_URL = "https://lks.bmstu.ru/schedule/list";
     public final static String BMSTU_URL = "https://lks.bmstu.ru";
-    private final UnirestInstance unirestInstance = Unirest.spawnInstance();
-    private final TaskFabric fabric = new BaseTaskFabric(Executors.newCachedThreadPool());
     private final AsyncLoader loader;
 
+    public ScheduleLoaderInstance(OkHttpClient client, TaskFabric fabric) {
+        loader = new AsyncLoader(client, fabric);
+    }
+
     public ScheduleLoaderInstance() {
-        loader = new AsyncLoader(unirestInstance, fabric);
+        this(null, null);
     }
 
     public Task<Map<String, String>> loadSchedules() {
@@ -51,8 +50,11 @@ public class ScheduleLoaderInstance {
         }
     }
 
+    public AsyncLoader getLoader() {
+        return loader;
+    }
+
     public void close() {
-        unirestInstance.close();
-        fabric.getExecutor().shutdown();
+        loader.getTaskFabric().getExecutor().shutdown();
     }
 }

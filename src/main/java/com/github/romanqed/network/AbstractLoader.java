@@ -2,31 +2,33 @@ package com.github.romanqed.network;
 
 
 import com.github.romanqed.util.Checks;
-import kong.unirest.HttpRequest;
-import kong.unirest.HttpResponse;
-import kong.unirest.Unirest;
-import kong.unirest.UnirestInstance;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 
 public abstract class AbstractLoader implements Loader {
-    protected UnirestInstance client;
+    protected OkHttpClient client;
 
-    public AbstractLoader(UnirestInstance client) {
-        this.client = Checks.requireNonNullElse(client, Unirest.spawnInstance());
+    public AbstractLoader(OkHttpClient client) {
+        this.client = Checks.requireNonNullElse(client, new OkHttpClient());
     }
 
     @Override
     public String load(URL url) throws IOException {
-        HttpResponse<String> response = requestBuilder(client, url).asString();
-        if (!response.isSuccess()) {
-            throw new IOException("Server returned HTTP response code: " + response.getStatus());
+        Response response = client.newCall(requestBuilder(url)).execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("Server returned HTTP response code: " + response.code());
         }
-        return response.getBody();
+        return Objects.requireNonNull(response.body()).string();
     }
 
-    protected HttpRequest<?> requestBuilder(UnirestInstance client, URL url) {
-        return client.get(url.toString());
+    protected Request requestBuilder(URL url) {
+        return new Request.Builder()
+                .url(url)
+                .build();
     }
 }

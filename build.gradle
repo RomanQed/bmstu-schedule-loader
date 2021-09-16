@@ -22,7 +22,7 @@ repositories {
 
 dependencies {
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.14.2'
-    implementation group: 'com.konghq', name: 'unirest-java', version: '3.11.09'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.0'
     implementation group: 'net.sf.biweekly', name: 'biweekly', version: '0.6.6'
 }
 
