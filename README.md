@@ -6,6 +6,6 @@ A simple library for downloading and parsing the schedule of the selected depart
 
 ```Groovy
 dependencies {
-    implementation group: 'com.github.romanqed', name: 'bmstu-schedule-loader', version: '1.0.2'
+    implementation group: 'com.github.romanqed', name: 'bmstu-schedule-loader', version: '1.0.3'
 }
 ```

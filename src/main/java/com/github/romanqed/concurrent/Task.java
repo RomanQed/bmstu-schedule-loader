@@ -6,14 +6,14 @@ import java.util.concurrent.Future;
 import java.util.function.Consumer;
 
 public interface Task<T> extends Callable<T> {
-    void async(Consumer<T> success, Consumer<Exception> failure);
+    Future<T> async(Consumer<T> success, Consumer<Exception> failure);
 
-    default void async(Consumer<T> success) {
-        async(success, null);
+    default Future<T> async(Consumer<T> success) {
+        return async(success, null);
     }
 
-    default void async() {
-        async(null);
+    default Future<T> async() {
+        return async(null);
     }
 
     default T checked(Consumer<Exception> failure) {
@@ -30,8 +30,6 @@ public interface Task<T> extends Callable<T> {
     default T silent() {
         return checked(null);
     }
-
-    Future<?> future();
 
     ExecutorService getExecutor();
 }
