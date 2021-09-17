@@ -16,6 +16,10 @@ public class ScheduleLoader {
         return new ScheduleLoaderInstance();
     }
 
+    public static ScheduleLoaderInstance getPrimaryInstance() {
+        return primaryInstance;
+    }
+
     public static Task<Map<String, String>> loadSchedules() {
         return primaryInstance.loadSchedules();
     }
