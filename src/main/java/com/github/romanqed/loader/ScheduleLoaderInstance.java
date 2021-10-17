@@ -1,11 +1,11 @@
-package com.github.romanqed;
+package com.github.romanqed.loader;
 
 import biweekly.Biweekly;
 import biweekly.ICalendar;
-import com.github.romanqed.concurrent.Task;
-import com.github.romanqed.concurrent.TaskFabric;
-import com.github.romanqed.network.AsyncLoader;
-import com.github.romanqed.util.Parse;
+import com.github.romanqed.jutils.concurrent.Task;
+import com.github.romanqed.jutils.concurrent.TaskFabric;
+import com.github.romanqed.loader.network.AsyncLoader;
+import com.github.romanqed.loader.util.Parse;
 import okhttp3.OkHttpClient;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

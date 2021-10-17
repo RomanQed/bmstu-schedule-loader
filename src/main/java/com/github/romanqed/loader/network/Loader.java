@@ -1,4 +1,4 @@
-package com.github.romanqed.network;
+package com.github.romanqed.loader.network;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package com.github.romanqed.util;
+package com.github.romanqed.loader.util;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

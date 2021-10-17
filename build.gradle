@@ -21,6 +21,7 @@ repositories {
 }
 
 dependencies {
+    implementation group: 'com.github.romanqed', name: 'jutils', version: '1.0.0'
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.14.2'
     implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.0'
     implementation group: 'net.sf.biweekly', name: 'biweekly', version: '0.6.6'

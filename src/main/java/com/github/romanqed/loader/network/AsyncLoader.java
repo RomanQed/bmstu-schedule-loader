@@ -1,9 +1,9 @@
-package com.github.romanqed.network;
+package com.github.romanqed.loader.network;
 
-import com.github.romanqed.concurrent.BaseTaskFabric;
-import com.github.romanqed.concurrent.Task;
-import com.github.romanqed.concurrent.TaskFabric;
-import com.github.romanqed.util.Checks;
+import com.github.romanqed.jutils.concurrent.BaseTaskFabric;
+import com.github.romanqed.jutils.concurrent.Task;
+import com.github.romanqed.jutils.concurrent.TaskFabric;
+import com.github.romanqed.jutils.util.Checks;
 import okhttp3.OkHttpClient;
 
 import java.net.URL;

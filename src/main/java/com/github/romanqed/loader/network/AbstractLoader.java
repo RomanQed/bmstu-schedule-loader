@@ -1,7 +1,7 @@
-package com.github.romanqed.network;
+package com.github.romanqed.loader.network;
 
 
-import com.github.romanqed.util.Checks;
+import com.github.romanqed.jutils.util.Checks;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

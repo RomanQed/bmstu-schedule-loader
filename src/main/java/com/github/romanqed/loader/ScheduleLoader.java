@@ -1,7 +1,7 @@
-package com.github.romanqed;
+package com.github.romanqed.loader;
 
 import biweekly.ICalendar;
-import com.github.romanqed.concurrent.Task;
+import com.github.romanqed.jutils.concurrent.Task;
 
 import java.util.Map;
 
