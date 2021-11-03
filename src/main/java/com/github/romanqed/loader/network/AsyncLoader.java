@@ -1,6 +1,6 @@
 package com.github.romanqed.loader.network;
 
-import com.github.romanqed.jutils.concurrent.BaseTaskFabric;
+import com.github.romanqed.jutils.concurrent.SimpleTaskFabric;
 import com.github.romanqed.jutils.concurrent.Task;
 import com.github.romanqed.jutils.concurrent.TaskFabric;
 import com.github.romanqed.jutils.util.Checks;
@@ -15,7 +15,7 @@ public class AsyncLoader extends AbstractLoader {
 
     public AsyncLoader(OkHttpClient client, TaskFabric fabric) {
         super(client);
-        this.fabric = Checks.requireNonNullElse(fabric, new BaseTaskFabric());
+        this.fabric = Checks.requireNonNullElse(fabric, new SimpleTaskFabric());
     }
 
     public <T> Task<T> asyncLoad(URL url, Function<String, T> processor) {
