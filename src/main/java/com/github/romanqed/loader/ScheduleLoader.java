@@ -28,6 +28,10 @@ public class ScheduleLoader {
         return primaryInstance.loadSchedules();
     }
 
+    public static Task<ICalendar> findSchedule(String group) {
+        return primaryInstance.findSchedule(group);
+    }
+
     public static Task<ICalendar> loadSchedule(String uri) {
         return primaryInstance.loadSchedule(uri);
     }
