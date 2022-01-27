@@ -16,6 +16,7 @@ To install it, you will need:
 ```Groovy
 dependencies {
     implementation group: 'net.sf.biweekly', name: 'biweekly', version:  '0.6.6'
+    implementation group: 'com.github.romanqed', name: 'jutils', version: '1.2.5'
     implementation group: 'com.github.romanqed', name: 'bmstu-schedule-loader', version: 'LATEST'
 }
 ```
@@ -33,6 +34,12 @@ dependencies {
     <groupId>net.sf.biweekly</groupId>
     <artifactId>biweekly</artifactId>
     <version>0.6.6</version>
+</dependency>
+
+<dependency>
+    <groupId>com.github.romanqed</groupId>
+    <artifactId>jutils</artifactId>
+    <version>1.2.5</version>
 </dependency>
 ```
 
